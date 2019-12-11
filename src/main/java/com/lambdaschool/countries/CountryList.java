@@ -223,4 +223,7 @@ public class CountryList {
         return c -> c.getName().toUpperCase().charAt(0) == Character.toUpperCase(letter);
     }
 
+    public static Checker findByNameLength(int nameLength) {
+        return c -> c.getName().length() >= nameLength;
+    }
 }
