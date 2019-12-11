@@ -218,4 +218,9 @@ public class CountryList {
         }
         return tempList;
     }
+
+    public static Checker findByFirstLetter(char letter) {
+        return c -> c.getName().toUpperCase().charAt(0) == Character.toUpperCase(letter);
+    }
+
 }
