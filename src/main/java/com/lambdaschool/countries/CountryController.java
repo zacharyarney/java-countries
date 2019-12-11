@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/countries")
 public class CountryController {
@@ -15,6 +17,16 @@ public class CountryController {
         CountriesApplication.clist.countryList.sort((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
         return new ResponseEntity<>(CountriesApplication.clist.countryList, HttpStatus.OK);
     }
+
+    // localhost:PORT/countries/names/start/{letter}
+    @GetMapping(value = "/names/start/{letter}", produces = {"application/json"})
+    public ResponseEntity<?> getCountriesByFirstLetter(@PathVariable char letter) {
+        ArrayList<Country> resList = CountriesApplication.clist.findCountries(CountryList.findByFirstLetter(letter));
+        resList.sort((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
+
+        return new ResponseEntity<>(resList, HttpStatus.OK);
+    }
+
     // localhost:PORT/countries/names/start/{letter}
     // localhost:PORT/countries/names/size/{number}
     // localhost:PORT/countries/population/size/{people}
