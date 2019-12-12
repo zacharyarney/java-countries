@@ -39,6 +39,13 @@ public class CountryController {
     }
 
     // localhost:PORT/countries/population/size/{people}
+    @GetMapping(value = "/population/size/{people}")
+    public ResponseEntity<?> getCountriesOfPopulationEqualToOrGreaterThan(@PathVariable int people) {
+        ArrayList<Country> resList = CountriesApplication.clist.findCountries(CountryList.findByPopulation(people));
+
+        return new ResponseEntity<>(resList, HttpStatus.OK);
+    }
+
 
     // localhost:PORT/countries/population/min
 
