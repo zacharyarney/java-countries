@@ -6,11 +6,11 @@ public class Country {
     private static final AtomicLong count = new AtomicLong();
     private long id;
     private String name;
-    private int population;
-    private int landMass;
+    private long population;
+    private long landMass;
     private int medianAge;
 
-    public Country(String name, int population, int landMass, int medianAge) {
+    public Country(String name, long population, long landMass, int medianAge) {
         this.id = count.incrementAndGet();
         this.name = name;
         this.population = population;
@@ -34,7 +34,7 @@ public class Country {
         this.name = name;
     }
 
-    public int getPopulation() {
+    public long getPopulation() {
         return population;
     }
 
@@ -42,11 +42,11 @@ public class Country {
         this.population = population;
     }
 
-    public int getLandMass() {
+    public long getLandMass() {
         return landMass;
     }
 
-    public void setLandMass(int landMass) {
+    public void setLandMass(long landMass) {
         this.landMass = landMass;
     }
 
