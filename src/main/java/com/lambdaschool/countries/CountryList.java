@@ -226,4 +226,8 @@ public class CountryList {
     public static Checker findByNameLength(int nameLength) {
         return c -> c.getName().length() >= nameLength;
     }
+
+    public static Checker findByPopulation(int population) {
+        return c -> c.getPopulation() >= population;
+    }
 }
