@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 @RestController
 @RequestMapping("/countries")
@@ -62,15 +63,23 @@ public class CountryController {
         return new ResponseEntity<>(CountriesApplication.clist.countryList.get(0), HttpStatus.OK);
     }
 
-    // localhost:PORT/countries/population/min
-
-    // localhost:PORT/countries/population/max
-
     // [STRETCH] localhost:PORT/countries/population/median
 
     // localhost:PORT/countries/age/min
+    @GetMapping(value = "/age/min", produces = {"application/json"})
+    public ResponseEntity<?> getCountryWithMinMedianAge() {
+        CountriesApplication.clist.countryList.sort(Comparator.comparingInt(Country::getMedianAge));
+
+        return new ResponseEntity<>(CountriesApplication.clist.countryList.get(0), HttpStatus.OK);
+    }
 
     // localhost:PORT/countries/age/max
+    @GetMapping(value = "/age/max", produces = {"application/json"})
+    public ResponseEntity<?> getCountryWithMaxMedianAge() {
+        CountriesApplication.clist.countryList.sort(Comparator.comparingInt(Country::getMedianAge).reversed());
+
+        return new ResponseEntity<>(CountriesApplication.clist.countryList.get(0), HttpStatus.OK);
+    }
 
     // [STRETCH] localhost:PORT/countries/age/median
 
